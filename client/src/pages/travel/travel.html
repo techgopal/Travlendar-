@@ -1,0 +1,149 @@
+<!--
+  Generated template for the TravelPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Travel Suggestion</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-segment [(ngModel)]="mode">
+      <ion-segment-button value="WALK">
+        WALK
+      </ion-segment-button>
+      <ion-segment-button value="DRIVE">
+        DRIVE
+      </ion-segment-button>
+      <ion-segment-button value="TRANSIT">
+        TRANSIT
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="mode">
+    <div *ngSwitchCase="'WALK'">
+      <div *ngIf="data_walk != undefined">
+        <ion-card *ngFor="let route of data_walk.data.routes">
+          <ion-card-header>
+            <div *ngFor="let step of route.legs[0].steps" style="float:left;">
+              <span *ngIf="step.travel_mode !='TRANSIT'" style="display:inline;padding : 5px;">
+                <ion-icon name="walk"></ion-icon>
+              </span>
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>Travel Time</ion-label>
+                <ion-label right>{{route.legs[0].duration.text}}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Travel Distance</ion-label>
+                <ion-label right>{{route.legs[0].distance.text}}</ion-label>
+              </ion-item>
+              <ion-label>Travel Steps</ion-label>
+              <ion-item *ngFor="let step of route.legs[0].steps">
+                <ion-label right [innerHTML]=step.html_instructions></ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'DRIVE'">
+      <div *ngIf="data_driving != undefined">
+        <ion-card *ngFor="let route of data_driving.data.routes">
+          <ion-card-header>
+            <div *ngFor="let step of route.legs[0].steps" style="float:left;">
+              <span *ngIf="step.travel_mode !='TRANSIT'" style="display:inline;padding : 5px;">
+                <ion-icon name="car"></ion-icon>
+              </span>
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>Travel Time</ion-label>
+                <ion-label right>{{route.legs[0].duration.text}}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Travel Distance</ion-label>
+                <ion-label right>{{route.legs[0].distance.text}}</ion-label>
+              </ion-item>
+              <ion-label>Travel Steps</ion-label>
+              <ion-item *ngFor="let step of route.legs[0].steps">
+                <ion-label right [innerHTML]=step.html_instructions></ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'TRANSIT'">
+      <div *ngIf="data_transit != undefined">
+        <ion-card *ngFor="let route of data_transit.data.routes">
+          <ion-card-header>
+            <div *ngFor="let step of route.legs[0].steps" style="float:left;">
+              <span *ngIf="step.travel_mode !='TRANSIT'" style="display:inline;padding : 5px;">
+                <ion-icon name="walk"></ion-icon>
+              </span>
+              <span *ngIf="step.travel_mode =='TRANSIT' && step.transit_details.line.vehicle.type=='BUS'" style="display:inline;padding : 5px;">
+                <ion-icon name="bus"></ion-icon>
+              </span>
+              <span *ngIf="step.travel_mode =='TRANSIT' && step.transit_details.line.vehicle.type=='SUBWAY'" style="display:inline;padding : 5px;">
+                <ion-icon name="subway"></ion-icon>
+              </span>
+              <span *ngIf="step.travel_mode =='TRANSIT' && step.transit_details.line.vehicle.type=='TRAM'" style="display:inline;padding : 5px;">
+                <ion-icon name="subway"></ion-icon>
+              </span>
+              <span *ngIf="step.travel_mode =='TRANSIT' && step.transit_details.line.vehicle.type=='HEAVY_RAIL'" style="display:inline;padding : 5px;">
+                <ion-icon name="train"></ion-icon>
+              </span>
+              <span *ngIf="step.travel_mode =='TRANSIT' && step.transit_details.line.vehicle.type=='RAIL'" style="display:inline;padding : 5px;">
+                <ion-icon name="train"></ion-icon>
+              </span>
+              <span *ngIf="step.travel_mode =='TRANSIT' && step.transit_details.line.vehicle.type=='TRAIN'" style="display:inline;padding : 5px;">
+                <ion-icon name="train"></ion-icon>
+              </span>
+              <span *ngIf="step.travel_mode =='TRANSIT' && step.transit_details.line.vehicle.type=='HIGH_SPEED_TRAIN'" style="display:inline;padding : 5px;">
+                <ion-icon name="train"></ion-icon>
+              </span>
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>Travel Time</ion-label>
+                <ion-label right>{{route.legs[0].duration.text}}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Travel Distance</ion-label>
+                <ion-label right>{{route.legs[0].distance.text}}</ion-label>
+              </ion-item>
+              <ion-label>Travel Steps</ion-label>
+              <ion-item *ngFor="let step of route.legs[0].steps">
+                <ion-label right [innerHTML]=step.html_instructions></ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>
