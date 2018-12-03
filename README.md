@@ -1,8 +1,12 @@
 # Travlendar-
 Travlendar+ is calendar based application which helps the user to schedule meetings for his/her calendar at various locations across a city or a region. 
 
-PLEASE PREFER INSTALLATION STEPS FROM ITD for more information
-//APPLICATION DEPLOYED TO http://35.189.240.85:8100/
+The below are the frameworks used to build the Travlendar+ application.
+1. Angular
+2. Ionic 2+
+3. ExpressJS
+4. NodeJS
+
 
 //TO INSTALL NODEJS 8.9.X
 sudo apt-get install python-software-properties
